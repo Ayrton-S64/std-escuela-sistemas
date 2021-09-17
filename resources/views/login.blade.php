@@ -8,14 +8,14 @@
 
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
-    <link rel="stylesheet" href="{{asset('css/style_login.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('css/style_login.css')}}">
 </head>
 <body>
     <div class="login">
         <div class="login__content">
 
             <div class="login__img">
-                    <img src="{{asset('img/img_login1.svg')}}" alt="">
+                    <img src="{{secure_asset('img/img_login1.svg')}}" alt="">
              </div>
             <div class="login__forms">
                 <form  class="form" action="{{ route ('identificacion') }}" method="POST">

@@ -38,7 +38,7 @@
         @foreach ($tramite->documentos as $documento)
           <td>
             <div>
-              <a target="__blank"  href="{{ asset('storage/'.$documento->ruta) }}">
+              <a target="__blank"  href="{{ secure_asset('storage/'.$documento->ruta) }}">
                 <i class="fab fa-file-pdf"></i>
                 {{ $documento->nombreArchivo }}
               </a>

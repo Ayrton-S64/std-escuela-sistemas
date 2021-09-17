@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Tramite Documentario</title>
-  <link rel="stylesheet" href="{{ asset('css/style_index.css') }}">
+  <link rel="stylesheet" href="{{ secure_asset('css/style_index.css') }}">
   <!--ICONS BOXICONS-->
   <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
@@ -54,7 +54,7 @@
     </div>
 
     <!-- ===== SECTION =====-->
-  
+
       <section class="l-section" id="section">
         <div class="container">
           <div class="row">
@@ -71,18 +71,18 @@
               </div>
             </div>
         </div>
-       
-      </section>    
-    
+
+      </section>
+
   </main>
   <!-- RELLAX JS-->
-  <script src="{{ asset('js/rellax.min.js') }}"></script>
+  <script src="{{ secure_asset('js/rellax.min.js') }}"></script>
   <!-- GSAP-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
   <!-- SCROLL REVEAL -->
   <script src="https://unpkg.com/scrollreveal"></script>
   <!-- MAIN JS -->
-  <script src="{{ asset('js/main.js') }}"></script>
+  <script src="{{ secure_asset('js/main.js') }}"></script>
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
