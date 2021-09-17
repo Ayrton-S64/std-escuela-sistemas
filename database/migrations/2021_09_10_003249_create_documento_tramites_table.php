@@ -16,7 +16,8 @@ class CreateDocumentoTramitesTable extends Migration
         Schema::create('documento_tramites', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('idTramite');
-            $table->text('blob_data');
+            $table->string('ruta');
+            $table->string('nombreArchivo');
             $table->timestamps();
 
             $table->foreign('idTramite')->references('id')->on('tramites');

@@ -21,6 +21,7 @@ class CreateTramitesTable extends Migration
             $table->unsignedBigInteger('estado');
             $table->text('razon');
             $table->unsignedBigInteger('usuarioRegistro');
+            $table->text('observacion');
             $table->timestamps();
 
             $table->foreign('estado')->references('id')->on('estado_tramites');

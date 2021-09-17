@@ -16,6 +16,8 @@ class CreateTipoTramitesTable extends Migration
         Schema::create('tipo_tramites', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion','70');
+            $table->text('informacion');
+            $table->text('Requisitos');
             $table->timestamps();
         });
     }
