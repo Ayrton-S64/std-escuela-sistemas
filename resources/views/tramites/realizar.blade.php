@@ -61,6 +61,10 @@
   </div>
   <div class="row justify-content-center">
     <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+
+    <a class="mx-3 btn btn-secondary" href="{{ route('vertramites') }}">
+        Volver
+    </a>
   </div>
 
 </form>

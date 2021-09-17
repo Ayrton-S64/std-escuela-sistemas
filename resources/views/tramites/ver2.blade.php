@@ -11,7 +11,7 @@
       <div class="row justify-content-center ">
         <div class="col">
           <h3><strong>Tipo de tramite:</strong> </h3>
-          <td>{{ $tramite->tipoTramite }}</td>
+          <td>{{ $tramite->tipo_tramite->descripcion }}</td>
         </div>
       </div>
       <div class="row justify-content-center ">
@@ -23,7 +23,7 @@
       <div class="row justify-content-center ">
         <div class="col">
           <h3><strong>Estado:</strong></h3>
-          <td>{{ $tramite->estado }}</td>
+          <td>{{ $tramite->estado_tramite->descripcion }}</td>
         </div>
       </div>
     </div>
@@ -38,7 +38,7 @@
         @foreach ($tramite->documentos as $documento)
           <td>
             <div>
-              <a target="__blank" href="/storage/{{ $documento->ruta }}">
+              <a target="__blank"  href="{{ asset('storage/'.$documento->ruta) }}">
                 <i class="fab fa-file-pdf"></i>
                 {{ $documento->nombreArchivo }}
               </a>
@@ -48,4 +48,11 @@
       </table>
     </div>
   </div>
+  <div class="row">
+    <div class="col-12">
+        <a class="btn btn-secondary" href="{{ route('vertramites') }}">
+            Volver
+        </a>
+    </div>
+</div>
 @endsection

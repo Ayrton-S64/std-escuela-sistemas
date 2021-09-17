@@ -20,7 +20,7 @@
   <!-- ===== HEADER =====-->
   <header class="l-header">
     <nav class="nav bd-grid">
-      <a href="#" class="nav__logo">Tramite Documentario/Ingnieria de Sistemas</a>
+      <a href="#" class="nav__logo">Tramite Documentario/Ingenieria de Sistemas</a>
 
       <div class="nav__toggle" id="nav-toggle">
         <i class='bx bx-menu-alt-right'></i>
@@ -54,23 +54,26 @@
     </div>
 
     <!-- ===== SECTION =====-->
-    <section class="l-section" id="section">
-      <div class="row">
-        <div class="col-8 offset-2" style="padding: 3em 8em">
-          <div style="height: 100%; overflow-y: auto">
-            @foreach ($tramites as $tramite)
-              <div style="width:100%;padding: .8em 2.3em; border-bottom: 1px solid #707070">
-                <h2 class="section__title">{{$tramite->descripcion}}</h2>
-                @php
-                    echo  $tramite->informacion
-                @endphp
-                <a type="submit" target="__blank" href="/storage/formatos/FUT2020.docx" class="btn1">Descargar Fut</a>
+  
+      <section class="l-section" id="section">
+        <div class="container">
+          <div class="row">
+            <div class="col-8 offset-2" style="padding: 3em ">
+              <div style="height: 100%; overflow-y: auto">
+                @foreach ($tramites as $tramite)
+                  <div class ="shadow p-3 mb-5 bg-body rounded" style="width:100%; padding: .8em 2.3em; ">
+                    <h2 class="section__title">{{$tramite->descripcion}}</h2>
+                    <div class="col"><strong>REQUISITOS: </strong> {{$tramite->Requisitos}}</div>
+                    <a type="submit" target="__blank" href="/storage/formatos/{{$tramite->informacion}}" class="btn1">Descargar Tramite</a>
+                  </div>
+                  <br>
+                @endforeach
               </div>
-            @endforeach
-          </div>
+            </div>
         </div>
-    </section>
-
+       
+      </section>    
+    
   </main>
   <!-- RELLAX JS-->
   <script src="{{ asset('js/rellax.min.js') }}"></script>

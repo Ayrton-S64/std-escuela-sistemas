@@ -1,25 +1,24 @@
 @extends('layouts.plantilla')
 @section('contenido')
-<div class="row" style="overflow-y: auto">
+  <style>
+    .Pendiente {
+      color: #888498;
+    }
+
+    .Aceptado {
+      color: #4ea916
+    }
+
+    .Rechazado {
+      color: #bf2929
+    }
+
+  </style>
+  <div class="row" style="overflow-y: auto">
     <div class="col-12 ">
       <div class="card col-12 ">
         <div class="card-header">
           <h1 class="card-title">Tramites registrados</h1>
-
-          <div class="card-tools">
-            <div>
-              <p>Buscar con Codigo de documento</p>
-            </div>
-            <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-default">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
@@ -42,7 +41,8 @@
                   <td>{{ $item->codigo }}</td>
                   <td>{{ $item->tipo_tramite->descripcion }}</td>
                   <td>{{ $item->fechaRegistro }}</td>
-                  <td>{{ $item->estado_tramite->descripcion }}</td>
+                  <td class="{{ $item->estado_tramite->descripcion }}"><b>{{ $item->estado_tramite->descripcion }}</b>
+                  </td>
                   <td>{{ $item->razon }}</td>
                   <td>
                     <a type="button" class="btn btn-primary" href="{{ route('tramite.revisar', $item->id) }}">
@@ -61,6 +61,7 @@
 
     </div>
   </div>
+
 @section('script')
   <script>
     $(document).ready(function() {

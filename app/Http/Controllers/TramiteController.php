@@ -68,7 +68,7 @@ class TramiteController extends Controller
         $archivo = $request->file('archivosAdjuntos');
         $nombreRuta = $codigoTramite.'-'.(++$t_cont).'.'.$archivo->guessClientExtension();
         $nombre = $archivo->getClientOriginalName();
-
+      //agrega otro campo que sera requisitos :'v
 
         DB::beginTransaction();
 
@@ -78,6 +78,7 @@ class TramiteController extends Controller
             $tramite->tipoTramite= $request->tipoTramite;
             $tramite->fechaRegistro=now()->format('Y-m-d');
             $tramite->estado =1;
+            $tramite->observacion = '';
             $tramite->razon=$request->txtRazon;
             $tramite->usuarioRegistro=auth()->id();
             $tramite->save();
@@ -160,16 +161,10 @@ class TramiteController extends Controller
     }
 
     public function estado(Request $request , $id){
+
         $tramite = Tramite::find($id);
-
-
-        $estadosolicitado = $request->estado;
-
-        if ($estadosolicitado == 2) {
-            $tramite->estado = 2;
-        }else{
-            $tramite->estado = 3 ;
-        }
+        $tramite->estado = $request->estado;
+        $tramite->observacion = $request->observacion;
         $tramite->save();
 
         return redirect()->route('gtramites');

@@ -235,7 +235,7 @@ img {
   color: var(--white-color);
 }
 .l-section {
-  background-color: var(--white-color);
+  background-color: white;
 }
 
 .section {

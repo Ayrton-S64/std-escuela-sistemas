@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TipoTramiteController;
 use App\Http\Controllers\TramiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -40,5 +41,7 @@ Route::get('tramites/ver/{codigo}', [TramiteController::class, 'show'])->name('v
 Route::get('tramites/revisar/{codigo}', [TramiteController::class, 'show2'])->name('tramite.revisar');
 Route::put('tramites/{id}' , [TramiteController::class , 'estado'])->name('tramite.estado');
 
+Route::get('tramites/agregar',[TipoTramiteController::class,'create'])->name('tipoTramite.create');
+Route::post('tramites/guardar',[TipoTramiteController::class,'store'])->name('tipoTramite.store');
 
 
