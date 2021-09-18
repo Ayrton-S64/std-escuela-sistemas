@@ -52,7 +52,7 @@ class TipoTramiteController extends Controller
 
             $tramite = new TipoTramite();
             $tramite->descripcion = $request->descripcion;
-            $tramite->ruta = 'formatos/'.$nombreRuta;
+            $tramite->ruta = 'formatos/'.$nombre;
             $tramite->nombreArchivo = $nombre;
             $tramite->Requisitos = $request->requisito;
             $tramite->save();

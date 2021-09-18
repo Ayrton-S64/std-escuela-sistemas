@@ -47,7 +47,6 @@ Route::get('tramites/agregar',[TipoTramiteController::class,'create'])->name('ti
 Route::post('tramites/guardar',[TipoTramiteController::class,'store'])->name('tipoTramite.store');
 
 Route::get('/download/{carpeta}/{archivo}', function($carpeta,$archivo) {
-
     if($carpeta=='documentos'){
         $archivo = DocumentoTramite::find($archivo);
     }else if($carpeta == 'formatos'){
