@@ -8,6 +8,7 @@ use App\Models\Tramite;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use PhpParser\Builder\Trait_;
 
 use function PHPSTORM_META\map;
@@ -83,7 +84,7 @@ class TramiteController extends Controller
             $tramite->usuarioRegistro=auth()->id();
             $tramite->save();
 
-            $archivo->storeAs('documentos',$nombreRuta,'public');
+            $archivo->storeAs('documentos',$nombreRuta,'s3');
 
             $Documento = new DocumentoTramite();
             $Documento->idTramite = $tramite->id;
@@ -122,7 +123,12 @@ class TramiteController extends Controller
     public function show2($id)
     {
         $tramite = Tramite::find($id);
-        return view('tramites.ver2',compact('tramite'));
+
+        $data = Storage::disk('s3')->response($tramite->documentos[0]->ruta);
+
+        // dd($data);
+
+        return view('tramites.ver2',compact('tramite','data'));
 
     }
     /**

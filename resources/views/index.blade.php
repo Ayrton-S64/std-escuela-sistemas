@@ -64,7 +64,7 @@
                   <div class ="shadow p-3 mb-5 bg-body rounded" style="width:100%; padding: .8em 2.3em; ">
                     <h2 class="section__title">{{$tramite->descripcion}}</h2>
                     <div class="col"><strong>REQUISITOS: </strong> {{$tramite->Requisitos}}</div>
-                    <a type="submit" target="__blank" href="/storage/formatos/{{$tramite->informacion}}" class="btn1">Descargar Tramite</a>
+                    <a type="submit" target="__blank" href="{{ route('descargar', ['carpeta'=>'formatos','archivo'=>$tramite]) }}" class="btn1">Descargar Tramite</a>
                   </div>
                   <br>
                 @endforeach

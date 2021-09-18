@@ -17,56 +17,65 @@ class DatabaseSeeder extends Seeder
         // Tipo de Tramites-------------------------------------------------------------------------------------------------------
 
         DB::table('tipo_tramites')->insert([
-            'descripcion' =>'FORMATO DE UNICO DE TRAMITES(FUT)' ,
-            'informacion' => 'FUT2020.docx',
+            'descripcion'=>'FORMATO DE UNICO DE TRAMITES(FUT)',
+            'ruta' =>'formatos/FUT2020.docx' ,
+            'nombreArchivo' => 'FUT2020.docx',
             'Requisitos' => '',
         ]);
 
         DB::table('tipo_tramites')->insert([
             'descripcion' =>'FICHA DE MATRICULA' ,
-            'informacion' => 'FICHA MATRICULA MANUAL 2020-1.xls',
+            'ruta' =>'formatos/FICHA MATRICULA MANUAL 2020-1.xls' ,
+            'nombreArchivo' => 'FICHA MATRICULA MANUAL 2020-1.xls',
             'Requisitos' => '',
         ]);
 
         DB::table('tipo_tramites')->insert([
             'descripcion' =>'FORMATO DE APERTURA CICLO VACIONAL POR EXCEPCION(2021)' ,
-            'informacion' => 'FORMATO DE APERTURA DE CURSO CICLO VACACIONAL POR EXCEPCION(2021).docx',
+            'ruta' =>'formatos/FORMATO DE APERTURA DE CURSO CICLO VACACIONAL POR EXCEPCION(2021).docx',
+            'nombreArchivo' => 'FORMATO DE APERTURA DE CURSO CICLO VACACIONAL POR EXCEPCION(2021).docx',
             'Requisitos' => '',
         ]);
 
         DB::table('tipo_tramites')->insert([
             'descripcion' =>'FORMATO DE APERTURA CICLO VACIONAL(2021)' ,
-            'informacion' => 'FORMATO DE APERTURA DE CURSOS CICLO VACACIONAL(2021).docx',
+            'ruta' =>'formatos/FORMATO DE APERTURA DE CURSOS CICLO VACACIONAL(2021).docx' ,
+            'nombreArchivo' => 'FORMATO DE APERTURA DE CURSOS CICLO VACACIONAL(2021).docx',
             'Requisitos' => '',
         ]);
 
         DB::table('tipo_tramites')->insert([
             'descripcion' =>'REGULARIZACION DE MATRICULA' ,
-            'informacion' => 'FUT2020.docx',
+            'ruta' =>'formatos/FUT2020.docx' ,
+            'nombreArchivo' => 'FUT2020.docx',
             'Requisitos' => 'FUT, indicando: “REGULARIZACIÓN DE MATRÍCULA” más voucher S/20 ,FICHA AUXILIAR DE MATRÍCULA y si fuera el caso los vouchers de los pagos realizados por 2da. 3ra., 4ta matrícula, un voucher por cada concepto, en un solo documento en formato pdf.',
         ]);
 
         DB::table('tipo_tramites')->insert([
             'descripcion' =>'AMPLIACION DE CREDITOS POR PROMEDIO PONDERADO' ,
-            'informacion' => 'FUT2020.docx',
+            'ruta' =>'formatos/FUT2020.docx' ,
+            'nombreArchivo' => 'FUT2020.docx',
             'Requisitos' => 'FUT, indicando el curso que se va a agregar, Historial académico del SGA, Vaucher de 20 Soles, Ficha de Matricula computarizada de cursos.',
         ]);
 
         DB::table('tipo_tramites')->insert([
             'descripcion' =>'AMPLIACION DE CREDITOS POR FINALIZACION DE CARRERA' ,
-            'informacion' => 'FUT2020.docx',
+            'ruta' =>'formatos/FUT2020.docx' ,
+            'nombreArchivo' => 'FUT2020.docx',
             'Requisitos' => 'FUT, indicando el curso que se va a agregar, Historial académico del SGA, Vaucher de 20 Soles, Ficha de Matricula computarizada de cursos.',
         ]);
 
         DB::table('tipo_tramites')->insert([
             'descripcion' =>'EXAMEN DE SUFICIENCIA(Nivelación)' ,
-            'informacion' => 'Grupos de Trabajos y exposiciones.xlsx',
+            'ruta' =>'formatos/Grupos de Trabajos y exposiciones.xlsx' ,
+            'nombreArchivo' => 'Grupos de Trabajos y exposiciones.xlsx',
             'Requisitos' => 'FUT, indicando el curso que se va a agregar, Historial académico del SGA, Voucher de Matricula cancelada,Voucher de Examen de suficiencia de 90 soles ,Ficha de Matricula computarizada de cursos.Declaracion Jurada indicando el curso y motivo ',
         ]);
 
         DB::table('tipo_tramites')->insert([
             'descripcion' =>'EXAMEN DE SUFICIENCIA(Finalizacion de Carrera)' ,
-            'informacion' => 'PONENCIAS POR EL ANIVERSARIO-FAC. INGENIERÍA.pdf',
+            'ruta' =>'formatos/PONENCIAS POR EL ANIVERSARIO-FAC. INGENIERÍA.pdf' ,
+            'nombreArchivo' => 'PONENCIAS POR EL ANIVERSARIO-FAC. INGENIERÍA.pdf',
             'Requisitos' => 'FUT, indicando el curso que se va a agregar, Historial académico del SGA, Voucher de Matricula cancelada,Voucher de Examen de suficiencia de 90 soles ,Ficha de Matricula computarizada de cursos.Declaracion Jurada indicando el curso y motivo ',
         ]);
 

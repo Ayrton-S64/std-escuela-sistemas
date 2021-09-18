@@ -4,8 +4,10 @@ use App\Http\Controllers\TipoTramiteController;
 use App\Http\Controllers\TramiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Models\DocumentoTramite;
 use App\Models\TipoTramite;
 use App\Models\Tramite;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,4 +46,35 @@ Route::put('tramites/{id}' , [TramiteController::class , 'estado'])->name('trami
 Route::get('tramites/agregar',[TipoTramiteController::class,'create'])->name('tipoTramite.create');
 Route::post('tramites/guardar',[TipoTramiteController::class,'store'])->name('tipoTramite.store');
 
+Route::get('/download/{carpeta}/{archivo}', function($carpeta,$archivo) {
+
+    if($carpeta=='documentos'){
+        $archivo = DocumentoTramite::find($archivo);
+    }else if($carpeta == 'formatos'){
+        $archivo = TipoTramite::find($archivo);
+    }
+
+
+
+	try {
+        // dd($archivo);
+        // exit();
+		$s3Client = Storage::cloud()->getAdapter()->getClient();
+		$stream = $s3Client->getObject([
+			'Bucket' => env('AWS_BUCKET'),
+			'Key'    => $archivo->ruta
+		]);
+
+		return response($stream['Body'], 200)->withHeaders([
+			'Content-Type'        => $stream['ContentType'],
+			'Content-Length'      => $stream['ContentLength'],
+			'Content-Disposition' => 'inline; filename="' . $archivo->nombreArchivo . '"'
+		]);
+
+	}  catch (S3Exception $e) {
+		abort( 401, 'The requested file not exists');
+	} catch (AwsException $e) {
+		abort( 401, 'An error as ocurred');
+	}
+})->name('descargar');
 
