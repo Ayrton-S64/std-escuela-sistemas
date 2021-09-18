@@ -27,7 +27,14 @@
         </div>
       </div>
     </div>
-
+    @if ($tramite->estado !== 1)
+      <div class="col-6 border-left pl-3">
+        <div class="form-group">
+          <label for="">Observación:</label>
+          <textarea  id="txtObservacion" class="form-control" rows="6">{{ $tramite->observacion }}</textarea>
+        </div>
+      </div>
+    @endif
   </div>
   <div class="row">
     <div class="col-12 ">
@@ -38,7 +45,7 @@
         @foreach ($tramite->documentos as $documento)
           <td>
             <div>
-              <a target="__blank" href="{{ route('descargar', ['carpeta'=>'documentos','archivo'=>$documento]) }}">
+              <a target="__blank" href="{{ route('descargar', ['carpeta' => 'documentos', 'archivo' => $documento]) }}">
                 <i class="fab fa-file-pdf"></i>
                 {{ $documento->nombreArchivo }}
               </a>
@@ -50,9 +57,9 @@
   </div>
   <div class="row">
     <div class="col-12">
-        <a class="btn btn-secondary" href="{{ route('vertramites') }}">
-            Volver
-        </a>
+      <a class="btn btn-secondary" href="{{ route('vertramites') }}">
+        Volver
+      </a>
     </div>
-</div>
+  </div>
 @endsection
