@@ -31,7 +31,7 @@
       <div class="col-6 border-left pl-3">
         <div class="form-group">
           <label for="">Observación:</label>
-          <textarea  id="txtObservacion" class="form-control" rows="6">{{ $tramite->observacion }}</textarea>
+          <textarea readonly id="txtObservacion" class="form-control" rows="6">{{ $tramite->observacion }}</textarea>
         </div>
       </div>
     @endif
