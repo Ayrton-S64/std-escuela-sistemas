@@ -1,15 +1,15 @@
 @extends('layouts.plantilla')
 @section('contenido')
 <style>
-    .Pendiente{
+    .PENDIENTE{
         color: #888498;
     }
 
-    .Aceptado{
+    .ACEPTADO{
         color: #4ea916
     }
 
-    .Rechazado{
+    .RECHAZADO{
         color: #bf2929
     }
 </style>

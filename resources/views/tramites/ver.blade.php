@@ -1,18 +1,17 @@
 @extends('layouts.plantilla')
 @section('contenido')
   <style>
-    .Pendiente {
-      color: #888498;
+    .PENDIENTE{
+        color: #888498;
     }
 
-    .Aceptado {
-      color: #4ea916
+    .ACEPTADO{
+        color: #4ea916
     }
 
-    .Rechazado {
-      color: #bf2929
+    .RECHAZADO{
+        color: #bf2929
     }
-
   </style>
   <div class="row" style="overflow-y: auto">
     <div class="col-12 ">

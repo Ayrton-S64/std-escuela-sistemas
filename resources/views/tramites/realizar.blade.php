@@ -11,7 +11,7 @@
   <div class="row ">
     <div class="form-group col-8">
         <div class="row">
-            <h4 class="col-5 text-right">Codigo de estudiante:</h4>
+            <h4 class="col-5 text-right">Codigo:</h4>
             <div class="col-7">
                 <input type="text" class="form-control" id="txtCodigoAlumno" lang="es" placeholder='{{str_repeat('0',10 - strlen(auth()->id())).(auth()->id())}}' readonly>
             </div>
