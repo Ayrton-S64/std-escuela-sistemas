@@ -18,6 +18,7 @@ class CreateTipoTramitesTable extends Migration
             $table->string('descripcion','70');
             $table->string('ruta');
             $table->string('nombreArchivo');
+            $table->text('informacion');
             $table->text('Requisitos');
             $table->timestamps();
         });

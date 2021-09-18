@@ -38,24 +38,28 @@ class TipoTramiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $t_cont = 0;
+        $codigoTramite = str_repeat('0',5 -strlen(TipoTramite::count() + 1)).(TipoTramite::count() + 1);
         $archivo = $request->file('archivosAdjuntos');
+        $nombreRuta = $codigoTramite.'-'.(++$t_cont).'.'.$archivo->guessClientExtension();
         $nombre = $archivo->getClientOriginalName();
 
         DB::beginTransaction();
         try{
-        
+
+            $archivo->storeAs('formatos',$nombre,'s3');
+
             $tramite = new TipoTramite();
             $tramite->descripcion = $request->descripcion;
-            $tramite->informacion = $nombre;
+            $tramite->ruta = 'formatos/'.$nombreRuta;
+            $tramite->nombreArchivo = $nombre;
             $tramite->Requisitos = $request->requisito;
             $tramite->save();
-        
-            $archivo->storeAs('formatos',$nombre,'public');
 
             DB::commit();
 
-            return redirect()->route('rtramites'); 
+            return redirect()->route('rtramites');
 
         }catch(Exception $e){
             DB::rollback();
