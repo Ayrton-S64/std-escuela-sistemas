@@ -59,7 +59,7 @@
         @foreach ($tramite->documentos as $documento)
           <td>
             <div>
-              <a target="__blank" href="/storage/{{ $documento->ruta }}">
+              <a target="__blank" href="{{ route('descargar', ['carpeta'=>'documentos','archivo'=>$documento]) }}">
                 <i class="fab fa-file-pdf"></i>
                 {{ $documento->nombreArchivo }}
               </a>
