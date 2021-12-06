@@ -24,22 +24,22 @@ class TramiteController extends Controller
     public function index()
     {
 
-        $tramites = Tramite::where('usuarioRegistro','=',auth()->id())->get();
+        $tramites = Tramite::where('usuarioRegistro', '=', auth()->id())->get();
         $codigo = auth()->id();
 
         // dd($tramites);
 
         // $tramites = Tramite::all();
-        return view('tramites.ver',compact('tramites'));
+        return view('tramites.ver', compact('tramites'));
     }
     public function gestion()
     {
         // if($_SESSION['user_rol']==1){
         //     $tramites = Tramite::where('usuarioRegistro','=',$_SESSION['user_id']);
         // }else{
-         $tramites = Tramite::all();
+        $tramites = Tramite::all();
 
-        return view('tramites.gestionar',compact('tramites'));
+        return view('tramites.gestionar', compact('tramites'));
     }
 
 
@@ -51,7 +51,7 @@ class TramiteController extends Controller
     public function create()
     {
         $tiposTramites = TipoTramite::all();
-        return view('tramites.realizar',compact('tiposTramites'));
+        return view('tramites.realizar', compact('tiposTramites'));
     }
 
     /**
@@ -65,30 +65,30 @@ class TramiteController extends Controller
         // dd($request);
 
         $t_cont = 0;
-        $codigoTramite = str_repeat('0',5 -strlen(Tramite::count() + 1)).(Tramite::count() + 1);
+        $codigoTramite = str_repeat('0', 5 - strlen(Tramite::count() + 1)) . (Tramite::count() + 1);
         $archivo = $request->file('archivosAdjuntos');
-        $nombreRuta = $codigoTramite.'-'.(++$t_cont).'.'.$archivo->guessClientExtension();
+        $nombreRuta = $codigoTramite . '-' . (++$t_cont) . '.' . $archivo->guessClientExtension();
         $nombre = $archivo->getClientOriginalName();
-      //agrega otro campo que sera requisitos :'v
+
 
         DB::beginTransaction();
 
-        try{
-            $tramite=new Tramite();
+        try {
+            $tramite = new Tramite();
             $tramite->codigo = $codigoTramite;
-            $tramite->tipoTramite= $request->tipoTramite;
-            $tramite->fechaRegistro=now()->format('Y-m-d');
-            $tramite->estado =1;
+            $tramite->tipoTramite = $request->tipoTramite;
+            $tramite->fechaRegistro = now()->format('Y-m-d');
+            $tramite->estado = 1;
             $tramite->observacion = '';
-            $tramite->razon=$request->txtRazon;
-            $tramite->usuarioRegistro=auth()->id();
+            $tramite->razon = $request->txtRazon;
+            $tramite->usuarioRegistro = auth()->id();
             $tramite->save();
 
-            $archivo->storeAs('documentos',$nombreRuta,'s3');
+            $archivo->storeAs('documentos', $nombreRuta, 's3');
 
             $Documento = new DocumentoTramite();
             $Documento->idTramite = $tramite->id;
-            $Documento->ruta = 'documentos/'.$nombreRuta;
+            $Documento->ruta = 'documentos/' . $nombreRuta;
             $Documento->nombreArchivo = $nombre;
             $Documento->save();
 
@@ -96,7 +96,7 @@ class TramiteController extends Controller
 
             return redirect()->route('vertramites'); // sabes como agregar el ->with()}
 
-        }catch(Exception $e){
+        } catch (Exception $e) {
             DB::rollback();
             dd($e->getMessage());
         }
@@ -115,10 +115,9 @@ class TramiteController extends Controller
     public function show($id)
     {
         //
-        $tramite=Tramite::find($id);
+        $tramite = Tramite::find($id);
 
-        return view('tramites.revisar',compact('tramite'));
-
+        return view('tramites.revisar', compact('tramite'));
     }
     public function show2($id)
     {
@@ -128,8 +127,7 @@ class TramiteController extends Controller
 
         // dd($data);
 
-        return view('tramites.ver2',compact('tramite','data'));
-
+        return view('tramites.ver2', compact('tramite', $data));
     }
     /**
      * Show the form for editing the specified resource.
@@ -166,7 +164,8 @@ class TramiteController extends Controller
         //
     }
 
-    public function estado(Request $request , $id){
+    public function estado(Request $request, $id)
+    {
 
         $tramite = Tramite::find($id);
         $tramite->estado = $request->estado;
