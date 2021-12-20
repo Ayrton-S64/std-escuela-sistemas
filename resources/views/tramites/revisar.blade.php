@@ -34,9 +34,9 @@
         <input type="text" name="estado" id="txtEstado" hidden>
         <div class="form-group">
           <label for="">Observación:</label>
-          <textarea @if ($tramite->estado !=1)
-              readonly
-          @endif required name="observacion" id="txtObservacion" class="form-control" rows="6">{{$tramite->observacion}}</textarea>
+          <textarea @if ($tramite->estado != 1)
+                readonly
+            @endif required name="observacion" id="txtObservacion" class="form-control" rows="6">{{ $tramite->observacion }}</textarea>
         </div>
         @if ($tramite->estado == 1)
           <div class="form-group">
@@ -67,57 +67,58 @@
   </div>
   <div class="row">
     <div class="col-12 ">
-      <h4>Documentos Adjuntos:</h4>
+      <h6>Documentos Adjuntos:</h6>
     </div>
     <div class="col-12">
       <table class="table table-striped">
         @foreach ($tramite->documentos as $documento)
-          <td>
-            <div>
-              <a target="__blank" href="{{ route('descargar', ['carpeta'=>'documentos','archivo'=>$documento]) }}">
-                <i class="fab fa-file-pdf"></i>
-                {{ $documento->nombreArchivo }}
-              </a>
-            </div>
-          </td>
+          <tr>
+            <td>
+              <div>
+                <a target="__blank" href="{{ route('descargar', ['carpeta' => 'documentos', 'archivo' => $documento]) }}">
+                  <i class="fab fa-file-pdf"></i>
+                  {{ $documento->nombreArchivo }}
+                </a>
+              </div>
+            </td>
+          </tr>
         @endforeach
       </table>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-        <a class="btn btn-secondary" href="{{ route('gtramites') }}">
-            Volver
-        </a>
+      <a class="btn btn-secondary" href="{{ route('gtramites') }}">
+        Volver
+      </a>
     </div>
-@endsection
-@section('script')
-  <script>
-    function asignarEstado(estado) {
-      document.getElementById('txtEstado').value = estado;
-    }
-  </script>
-@endsection
-@section('script')
-  <script>
-    var array_documentos = [];
-    function getFiles() {
-      let fInput = document.getElementById('idFileAdjunto');
-        array_documentos = [...fInput.files].map(file => ({
-        nombre: file.name,
-        tipo: file.type,
-        size: this.formatBytes(file.size),
-        icon: (file.type === "application/pdf") ? "far fa-file-pdf" : "far fa-file-image",
-      }));
-      console.log(this.array_documentos);
-      listFiles()
-    }
+  @endsection
+  @section('script')
+    <script>
+      function asignarEstado(estado) {
+        document.getElementById('txtEstado').value = estado;
+      }
+    </script>
+    <script>
+      var array_documentos = [];
 
-    function listFiles(){
+      function getFiles() {
+        let fInput = document.getElementById('idFileAdjunto');
+        array_documentos = [...fInput.files].map(file => ({
+          nombre: file.name,
+          tipo: file.type,
+          size: this.formatBytes(file.size),
+          icon: (file.type === "application/pdf") ? "far fa-file-pdf" : "far fa-file-image",
+        }));
+        console.log(this.array_documentos);
+        listFiles()
+      }
+
+      function listFiles() {
         let contenedor = document.getElementById('listadoDocumentos');
         contenedor.innerHTML = "";
-        for(let item of array_documentos){
-            contenedor.innerHTML += `
+        for (let item of array_documentos) {
+          contenedor.innerHTML += `
             <div class="card bg-light px-2 mb-1">
                 <div class="row">
                 <div class="col-9">
@@ -132,18 +133,18 @@
         }
         console.log(contenedor);
         console.log(contenedor.innerHTML)
-    }
+      }
 
-    function formatBytes(bytes, decimals = 2) {
-      if (bytes === 0) return '0 Bytes';
+      function formatBytes(bytes, decimals = 2) {
+        if (bytes === 0) return '0 Bytes';
 
-      const k = 1024;
-      const dm = decimals < 0 ? 0 : decimals;
-      const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+        const k = 1024;
+        const dm = decimals < 0 ? 0 : decimals;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
-      const i = Math.floor(Math.log(bytes) / Math.log(k));
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-      return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-    }
-  </script>
-@endsection
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+      }
+    </script>
+  @endsection
