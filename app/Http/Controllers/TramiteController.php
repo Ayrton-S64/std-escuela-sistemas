@@ -77,7 +77,7 @@ class TramiteController extends Controller
                 array_push($listadoArchivos, ["nombreRuta"=>$nombreRuta, "nombre"=>$nombre]);
             }
          }
-         dd($listadoArchivos);
+        //  dd($listadoArchivos);
 
         DB::beginTransaction();
 
