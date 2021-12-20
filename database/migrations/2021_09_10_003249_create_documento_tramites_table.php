@@ -18,6 +18,7 @@ class CreateDocumentoTramitesTable extends Migration
             $table->unsignedBigInteger('idTramite');
             $table->string('ruta');
             $table->string('nombreArchivo');
+						$table->boolean('administrativo')->default(false);
             $table->timestamps();
 
             $table->foreign('idTramite')->references('id')->on('tramites');
