@@ -33,21 +33,6 @@
           <label for="">Observación:</label>
           <textarea readonly id="txtObservacion" class="form-control" rows="6">{{ $tramite->observacion }}</textarea>
         </div>
-        <div class="form-group">
-          <div class="row">
-            <h4 class="col-5 text-right">Documentos adjuntos:</h4>
-            <div class="custom-file col-7">
-              <input onchange="getFiles()" type="file" class="custom-file-input" accept=".pdf,.jpeg,.jpg"
-                name="archivosRespuesta[]" multiple id="idFileAdjunto" lang="es">
-              <label class="custom-file-label " for="customFileLang">Seleccionar Archivo</label>
-            </div>
-          </div>
-          <div class="row pt-2">
-            <div id="listadoDocumentos" class="col-7 offset-5 align-self-end p-0">
-
-            </div>
-          </div>
-        </div>
       </div>
     @endif
   </div>
@@ -80,53 +65,4 @@
       </a>
     </div>
   </div>
-@endsection
-@section('script')
-  <script>
-    var array_documentos = [];
-    function getFiles() {
-      let fInput = document.getElementById('idFileAdjunto');
-        array_documentos = [...fInput.files].map(file => ({
-        nombre: file.name,
-        tipo: file.type,
-        size: this.formatBytes(file.size),
-        icon: (file.type === "application/pdf") ? "far fa-file-pdf" : "far fa-file-image",
-      }));
-      console.log(this.array_documentos);
-      listFiles()
-    }
-
-    function listFiles(){
-        let contenedor = document.getElementById('listadoDocumentos');
-        contenedor.innerHTML = "";
-        for(let item of array_documentos){
-            contenedor.innerHTML += `
-            <div class="card bg-light px-2 mb-1">
-                <div class="row">
-                <div class="col-9">
-                    <p class="text-truncate w-100 m-0"><i class="${ item.icon }"></i> - ${ item.nombre }</p>
-                </div>
-                <div class="col-3 text-right">
-                    ${ item.size }
-                </div>
-                </div>
-            </div>
-            `
-        }
-        console.log(contenedor);
-        console.log(contenedor.innerHTML)
-    }
-
-    function formatBytes(bytes, decimals = 2) {
-      if (bytes === 0) return '0 Bytes';
-
-      const k = 1024;
-      const dm = decimals < 0 ? 0 : decimals;
-      const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-
-      const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-      return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-    }
-  </script>
 @endsection
