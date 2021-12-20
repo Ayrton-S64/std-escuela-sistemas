@@ -52,7 +52,6 @@ Route::get('/download/{carpeta}/{archivo}', function($carpeta,$archivo) {
     }else if($carpeta == 'formatos'){
         $archivo = TipoTramite::find($archivo);
     }
-    dd($archivo);
 
 
 
@@ -61,10 +60,11 @@ Route::get('/download/{carpeta}/{archivo}', function($carpeta,$archivo) {
         // exit();
 		$s3Client = Storage::cloud()->getAdapter()->getClient();
 		$stream = $s3Client->getObject([
-			'Bucket' => env('AWS_BUCKET'),
+            'Bucket' => env('AWS_BUCKET'),
 			'Key'    => $archivo->ruta
 		]);
 
+        dd($archivo);
 		return response($stream['Body'], 200)->withHeaders([
 			'Content-Type'        => $stream['ContentType'],
 			'Content-Length'      => $stream['ContentLength'],
