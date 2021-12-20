@@ -74,7 +74,7 @@ class TramiteController extends Controller
                 $archivo = $file;
                 $nombreRuta = $codigoTramite . '-' . (++$t_cont) . '.' . $archivo->guessClientExtension();
                 $nombre = $archivo->getClientOriginalName();
-                array_push($listadoArchivos, ["nombreRuta"=>$nombreRuta, "nombre"=>$nombre]);
+                array_push($listadoArchivos, ["nombreRuta"=>$nombreRuta, "nombre"=>$nombre, "archivo"=>$archivo]);
             }
          }
         //  dd($listadoArchivos);
@@ -93,7 +93,7 @@ class TramiteController extends Controller
             $tramite->save();
 
             foreach($listadoArchivos as $documento){
-                $documento->storeAs('documentos', $documento['nombreRuta'], 's3');
+                $documento['archivo']->storeAs('documentos', $documento['nombreRuta'], 's3');
 
                 $Documento = new DocumentoTramite();
                 $Documento->idTramite = $tramite->id;
@@ -190,7 +190,7 @@ class TramiteController extends Controller
                 $archivo = $file;
                 $nombreRuta = $codigoTramite . '-' . (++$t_cont) . '.' . $archivo->guessClientExtension();
                 $nombre = $archivo->getClientOriginalName();
-                array_push($listadoArchivos, ["nombreRuta"=>$nombreRuta, "nombre"=>$nombre]);
+                array_push($listadoArchivos, ["nombreRuta"=>$nombreRuta, "nombre"=>$nombre, "archivo"=>$archivo]);
             }
          }
 
@@ -199,7 +199,7 @@ class TramiteController extends Controller
         $tramite->save();
 
         foreach($listadoArchivos as $documento){
-            $documento->storeAs('documentos', $documento['nombreRuta'], 's3');
+            $documento['archivo']->storeAs('documentos', $documento['nombreRuta'], 's3');
 
             $Documento = new DocumentoTramite();
             $Documento->idTramite = $tramite->id;
