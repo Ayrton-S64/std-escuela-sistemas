@@ -43,7 +43,7 @@
     <div class="home">
 
       <img src="img/fondo2.jpg" alt="">
-      <h1 class="parallax home__title" data-rellax-speed="-6">Tramite Documentario XD :v</h1><br>
+      <h1 class="parallax home__title" data-rellax-speed="-6">Tramite Documentario</h1><br>
       <span class="parallax home__subtitle" data-rellax-speed="-5">Escuela de Ingenieria de Sistemas</span>
 
 
