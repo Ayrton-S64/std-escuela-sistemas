@@ -64,12 +64,14 @@ Route::get('/download/{carpeta}/{archivo}', function($carpeta,$archivo) {
 			'Key'    => $archivo->ruta
 		]);
 
-        // dd($stream);
-		return response($stream['Body'], 200)->withHeaders([
-			'Content-Type'        => $stream['ContentType'],
+        $respuesta = response($stream['Body'], 200)->withHeaders([
+            'Content-Type'        => $stream['ContentType'],
 			'Content-Length'      => $stream['ContentLength'],
 			'Content-Disposition' => 'inline; filename="' . $archivo->nombreArchivo . '"'
 		]);
+
+        dd($respuesta);
+		return $respuesta
 
 	}  catch (S3Exception $e) {
 		abort( 401, 'The requested file not exists');
