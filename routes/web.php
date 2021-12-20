@@ -70,7 +70,7 @@ Route::get('/download/{carpeta}/{archivo}', function($carpeta,$archivo) {
 			'Content-Disposition' => 'inline; filename="' . $archivo->nombreArchivo . '"'
 		]);
 
-        dd($respuesta);
+        // dd($respuesta);
 		return $respuesta
 
 	}  catch (S3Exception $e) {
