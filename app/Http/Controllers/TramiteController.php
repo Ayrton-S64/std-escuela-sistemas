@@ -206,6 +206,7 @@ class TramiteController extends Controller
             $Documento->idTramite = $tramite->id;
             $Documento->ruta = 'documentos/' . $documento['nombreRuta'];
             $Documento->nombreArchivo = $documento['nombre'];
+            $Documento->administrativo = true;
             $Documento->save();
         }
 
