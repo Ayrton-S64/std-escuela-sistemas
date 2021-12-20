@@ -80,7 +80,7 @@
 @section('script')
   <script>
     var arraydocumentos = [];
-    getFiles() {
+    function getFiles() {
       let fInput = document.getElementById('idFileAdjunto');
         array_documentos = [...fInput.files].map(file => ({
         nombre: file.name,
@@ -91,7 +91,7 @@
       console.log(this.array_documentos);
     }
 
-    listFiles(){
+    function listFiles(){
         let contenedor = document.getElementById('listadoDocumentos');
         contenedor.innerHTML = "";
         for(let item of arraydocumentos){
@@ -110,7 +110,7 @@
         }
     }
 
-    formatBytes(bytes, decimals = 2) {
+    function formatBytes(bytes, decimals = 2) {
       if (bytes === 0) return '0 Bytes';
 
       const k = 1024;
