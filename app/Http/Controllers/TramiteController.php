@@ -67,6 +67,7 @@ class TramiteController extends Controller
         $t_cont = 0;
         $codigoTramite = str_repeat('0', 5 - strlen(Tramite::count() + 1)) . (Tramite::count() + 1);
         $archivo = $request->file('archivosAdjuntos');
+        dd($archivo);
         $nombreRuta = $codigoTramite . '-' . (++$t_cont) . '.' . $archivo->guessClientExtension();
         $nombre = $archivo->getClientOriginalName();
 
