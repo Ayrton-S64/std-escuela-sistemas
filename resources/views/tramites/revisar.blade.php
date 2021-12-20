@@ -72,7 +72,8 @@
     <div class="col-12">
       <table class="table table-striped">
         @foreach ($tramite->documentos as $documento)
-          <tr>
+         @if (!($documento->administrativo))
+         <tr>
             <td>
               <div>
                 <a target="__blank" href="{{ route('descargar', ['carpeta' => 'documentos', 'archivo' => $documento]) }}">
@@ -82,6 +83,30 @@
               </div>
             </td>
           </tr>
+         @endif
+        @endforeach
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 ">
+      <h6>Documentos Respuesta:</h6>
+    </div>
+    <div class="col-12">
+      <table class="table table-striped">
+        @foreach ($tramite->documentos as $documento)
+            @if ($documento->administrativo)
+            <tr>
+            <td>
+                <div>
+                <a target="__blank" href="{{ route('descargar', ['carpeta' => 'documentos', 'archivo' => $documento]) }}">
+                    <i class="fab fa-file-pdf"></i>
+                    {{ $documento->nombreArchivo }}
+                </a>
+                </div>
+            </td>
+            </tr>
+            @endif
         @endforeach
       </table>
     </div>
