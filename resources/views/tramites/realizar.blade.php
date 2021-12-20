@@ -44,7 +44,7 @@
         <div class="row">
           <h4 class="col-5 text-right">Documentos adjuntos:</h4>
           <div class="custom-file col-7">
-            <input onchange="getFiles()" type="file" class="custom-file-input" name="archivosAdjuntos" multiple id="idFileAdjunto" lang="es">
+            <input onchange="getFiles()" type="file" class="custom-file-input" name="archivosAdjuntos[]" multiple id="idFileAdjunto" lang="es">
             <label class="custom-file-label " for="customFileLang">Seleccionar Archivo</label>
           </div>
         </div>
@@ -79,7 +79,7 @@
 @endsection
 @section('script')
   <script>
-    var arraydocumentos = [];
+    var array_documentos = [];
     function getFiles() {
       let fInput = document.getElementById('idFileAdjunto');
         array_documentos = [...fInput.files].map(file => ({
@@ -89,12 +89,13 @@
         icon: (file.type === "application/pdf") ? "far fa-file-pdf" : "far fa-file-image",
       }));
       console.log(this.array_documentos);
+      listFiles()
     }
 
     function listFiles(){
         let contenedor = document.getElementById('listadoDocumentos');
         contenedor.innerHTML = "";
-        for(let item of arraydocumentos){
+        for(let item of array_documentos){
             contenedor.innerHTML += `
             <div class="card bg-light px-2 mb-1">
                 <div class="row">
