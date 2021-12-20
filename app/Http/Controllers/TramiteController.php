@@ -63,14 +63,21 @@ class TramiteController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-
+        $listadoArchivos = [];
         $t_cont = 0;
         $codigoTramite = str_repeat('0', 5 - strlen(Tramite::count() + 1)) . (Tramite::count() + 1);
-        dd($request);
-        $archivo = $request->files('archivosAdjuntos');
-        $nombreRuta = $codigoTramite . '-' . (++$t_cont) . '.' . $archivo->guessClientExtension();
-        $nombre = $archivo->getClientOriginalName();
-
+        // dd($request);
+        if($request->hasfile('archivosAdjuntos'))
+         {
+            foreach($request->file('archivosAdjuntos') as $file)
+            {
+                $archivo = $file;
+                $nombreRuta = $codigoTramite . '-' . (++$t_cont) . '.' . $archivo->guessClientExtension();
+                $nombre = $archivo->getClientOriginalName();
+                array_push($listadoArchivos, ["nombreRuta"=>$nombreRuta, "nombre"=>$nombre]);
+            }
+         }
+         dd($listadoArchivos);
 
         DB::beginTransaction();
 
@@ -85,13 +92,15 @@ class TramiteController extends Controller
             $tramite->usuarioRegistro = auth()->id();
             $tramite->save();
 
-            $archivo->storeAs('documentos', $nombreRuta, 's3');
+            foreach($listadoArchivos as $documento){
+                $archivo->storeAs('documentos', $documento['nombreRuta'], 's3');
 
-            $Documento = new DocumentoTramite();
-            $Documento->idTramite = $tramite->id;
-            $Documento->ruta = 'documentos/' . $nombreRuta;
-            $Documento->nombreArchivo = $nombre;
-            $Documento->save();
+                $Documento = new DocumentoTramite();
+                $Documento->idTramite = $tramite->id;
+                $Documento->ruta = 'documentos/' . $documento['nombreRuta'];
+                $Documento->nombreArchivo = $documento['nombre'];
+                $Documento->save();
+            }
 
             DB::commit();
 

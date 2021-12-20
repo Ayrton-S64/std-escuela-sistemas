@@ -44,7 +44,7 @@
         <div class="row">
           <h4 class="col-5 text-right">Documentos adjuntos:</h4>
           <div class="custom-file col-7">
-            <input onchange="getFiles()" type="file" class="custom-file-input" name="archivosAdjuntos[]" multiple id="idFileAdjunto" lang="es">
+            <input onchange="getFiles()" type="file" class="custom-file-input" accept=".pdf,.jpeg,.jpg" name="archivosAdjuntos[]" multiple id="idFileAdjunto" lang="es">
             <label class="custom-file-label " for="customFileLang">Seleccionar Archivo</label>
           </div>
         </div>
