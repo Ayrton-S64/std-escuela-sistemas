@@ -177,13 +177,15 @@ class TramiteController extends Controller
     public function estado(Request $request, $id)
     {
 
+        $tramite = Tramite::find($id);
+
         $listadoArchivos = [];
-        $t_cont = 0;
+        $t_cont = $tramite->documentos->count();
         $codigoTramite = str_repeat('0', 5 - strlen(Tramite::count() + 1)) . (Tramite::count() + 1);
         // dd($request);
-        if($request->hasfile('archivosAdjuntos'))
+        if($request->hasfile('archivosRespuesta'))
          {
-            foreach($request->file('archivosAdjuntos') as $file)
+            foreach($request->file('archivosRespuesta') as $file)
             {
                 $archivo = $file;
                 $nombreRuta = $codigoTramite . '-' . (++$t_cont) . '.' . $archivo->guessClientExtension();
@@ -192,7 +194,6 @@ class TramiteController extends Controller
             }
          }
 
-        $tramite = Tramite::find($id);
         $tramite->estado = $request->estado;
         $tramite->observacion = $request->observacion;
         $tramite->save();
