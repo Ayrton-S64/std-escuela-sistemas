@@ -43,14 +43,17 @@
     <div class="col-12">
       <table class="table table-striped">
         @foreach ($tramite->documentos as $documento)
-          <td>
-            <div>
-              <a target="__blank" href="{{ route('descargar', ['carpeta' => 'documentos', 'archivo' => $documento]) }}">
-                <i class="fab fa-file-pdf"></i>
-                {{ $documento->nombreArchivo }}
-              </a>
-            </div>
-          </td>
+          <tr>
+            <td>
+              <div>
+                <a target="__blank"
+                  href="{{ route('descargar', ['carpeta' => 'documentos', 'archivo' => $documento]) }}">
+                  <i class="fab fa-file-pdf"></i>
+                  {{ $documento->nombreArchivo }}
+                </a>
+              </div>
+            </td>
+          </tr>
         @endforeach
       </table>
     </div>

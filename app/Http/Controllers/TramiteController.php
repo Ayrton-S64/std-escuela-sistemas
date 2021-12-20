@@ -177,10 +177,35 @@ class TramiteController extends Controller
     public function estado(Request $request, $id)
     {
 
+        $listadoArchivos = [];
+        $t_cont = 0;
+        $codigoTramite = str_repeat('0', 5 - strlen(Tramite::count() + 1)) . (Tramite::count() + 1);
+        // dd($request);
+        if($request->hasfile('archivosAdjuntos'))
+         {
+            foreach($request->file('archivosAdjuntos') as $file)
+            {
+                $archivo = $file;
+                $nombreRuta = $codigoTramite . '-' . (++$t_cont) . '.' . $archivo->guessClientExtension();
+                $nombre = $archivo->getClientOriginalName();
+                array_push($listadoArchivos, ["nombreRuta"=>$nombreRuta, "nombre"=>$nombre]);
+            }
+         }
+
         $tramite = Tramite::find($id);
         $tramite->estado = $request->estado;
         $tramite->observacion = $request->observacion;
         $tramite->save();
+
+        foreach($listadoArchivos as $documento){
+            $archivo->storeAs('documentos', $documento['nombreRuta'], 's3');
+
+            $Documento = new DocumentoTramite();
+            $Documento->idTramite = $tramite->id;
+            $Documento->ruta = 'documentos/' . $documento['nombreRuta'];
+            $Documento->nombreArchivo = $documento['nombre'];
+            $Documento->save();
+        }
 
         return redirect()->route('gtramites');
     }
