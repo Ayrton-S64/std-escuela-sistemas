@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="col-6 border-left pl-3">
-      <form action="{{ route('tramite.estado', $tramite->id) }}" method="post">
+      <form action="{{ route('tramite.estado', $tramite->id) }}" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <input type="text" name="estado" id="txtEstado" hidden>
