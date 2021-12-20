@@ -71,7 +71,7 @@ Route::get('/download/{carpeta}/{archivo}', function($carpeta,$archivo) {
 		]);
 
         // dd($respuesta);
-		return $respuesta
+		return $respuesta;
 
 	}  catch (S3Exception $e) {
 		abort( 401, 'The requested file not exists');
