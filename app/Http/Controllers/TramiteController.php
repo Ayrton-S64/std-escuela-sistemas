@@ -197,10 +197,10 @@ class TramiteController extends Controller
         $tramite->estado = $request->estado;
         $tramite->observacion = $request->observacion;
         $tramite->save();
-         dd($listadoArchivos);
+        //  dd($listadoArchivos);
         foreach($listadoArchivos as $documento){
+            dd($documento);
             $documento['archivo']->storeAs('documentos', $documento['nombreRuta'], 's3');
-
             $Documento = new DocumentoTramite();
             $Documento->idTramite = $tramite->id;
             $Documento->ruta = 'documentos/' . $documento['nombreRuta'];
