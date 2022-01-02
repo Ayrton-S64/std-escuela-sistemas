@@ -188,7 +188,7 @@ class TramiteController extends Controller
             {
                 $archivo = $file;
                 $nombreRuta = $codigoTramite . '-' . (++$t_cont) . '.' . $archivo->guessClientExtension();
-                dd($nombreRuta);
+                // dd($nombreRuta);
                 $nombre = $archivo->getClientOriginalName();
                 array_push($listadoArchivos, ["nombreRuta"=>$nombreRuta, "nombre"=>$nombre, "archivo"=>$archivo]);
             }
