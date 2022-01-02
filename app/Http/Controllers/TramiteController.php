@@ -182,13 +182,13 @@ class TramiteController extends Controller
         $listadoArchivos = [];
         $t_cont = $tramite->documentos->count();
         $codigoTramite = str_repeat('0', 5 - strlen($id)) . ($id);
-        dd($codigoTramite);
         if($request->hasfile('archivosRespuesta'))
          {
             foreach($request->file('archivosRespuesta') as $file)
             {
                 $archivo = $file;
                 $nombreRuta = $codigoTramite . '-' . (++$t_cont) . '.' . $archivo->guessClientExtension();
+                dd($nombreRuta);
                 $nombre = $archivo->getClientOriginalName();
                 array_push($listadoArchivos, ["nombreRuta"=>$nombreRuta, "nombre"=>$nombre, "archivo"=>$archivo]);
             }
@@ -197,7 +197,7 @@ class TramiteController extends Controller
         $tramite->estado = $request->estado;
         $tramite->observacion = $request->observacion;
         $tramite->save();
-
+         dd($listadoArchivos);
         foreach($listadoArchivos as $documento){
             $documento['archivo']->storeAs('documentos', $documento['nombreRuta'], 's3');
 
