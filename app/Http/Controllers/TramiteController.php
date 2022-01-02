@@ -182,8 +182,7 @@ class TramiteController extends Controller
         $listadoArchivos = [];
         $t_cont = $tramite->documentos->count();
         $codigoTramite = str_repeat('0', 5 - strlen($id)) . ($id);
-        // dd($request);
-        // dd($request);
+        dd($codigoTramite);
         if($request->hasfile('archivosRespuesta'))
          {
             foreach($request->file('archivosRespuesta') as $file)
